@@ -95,7 +95,7 @@ function buildValidationFn(schema) {
             return;
           }
 
-          var isValid = undefined;
+          var isValid = void 0;
           var customValidator = (0, _isFunction2.default)(opts) && opts;
 
           if (customValidator) {
@@ -106,8 +106,8 @@ function buildValidationFn(schema) {
 
           if (!isValid) {
             // use custom error message or fallback to default
-            var message = error || (0, _errorMessages2.default)(id, label, opts);
-            addErrorToField(errors, fieldRef, message);
+            var _message = error || (0, _errorMessages2.default)(id, label, opts);
+            addErrorToField(errors, fieldRef, _message);
           }
         });
       }
@@ -127,8 +127,8 @@ function addErrorToField(errors, fieldRef, errorMessage) {
 // validatorId = 'date' => validator.isDate
 // validatorId = 'creditCard' => validator.isCreditCard
 function getValidator(validatorId) {
-  var validatorIdInStartCase = (0, _startCase2.default)(validatorId);
-  var validatorFn = _validator2.default['is' + validatorIdInStartCase];
+  var validatorIdInStartCase = (0, _startCase2.default)(validatorId).replace(/\s/g, '');
+  var validatorFn = _validator2.default['is' + validatorIdInStartCase] || _validator2.default[validatorId];
   return validatorFn;
 }
 

@@ -117,6 +117,7 @@ describe('buildValidationFn', function () {
   var fields = formSchema.fields;
   var validate = formSchema.validate;
 
+
   it('should build a redux form validation fn based on a schema', function () {
     _should2.default.exist(formSchema);
     formSchema.should.have.keys('fields', 'validate');
